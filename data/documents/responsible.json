@@ -1,0 +1,16 @@
+{
+  "id": "responsible",
+  "title": "Desenvolvimento responsável — práticas do laboratório",
+  "organization": "AI Reliability Lab — texto próprio de demonstração",
+  "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+  "reference_title": "NIST AI Risk Management Framework",
+  "reference_organization": "NIST",
+  "accessed": "2026-11-03",
+  "license": "Texto próprio criado para este projeto; CC BY 4.0. Referência pública consultada; não é tradução nem publicação oficial do NIST.",
+  "sections": [
+    {"id": "incerteza", "title": "1. Evidência insuficiente", "text": "Neste laboratório, o sistema se abstém quando nenhum trecho recuperado alcança o limiar de similaridade configurado. Esse limiar é uma heurística de engenharia, não um detector de verdade. Uma pergunta fora do escopo pode ser parecida com um trecho e ultrapassar o limiar. A interface deve permitir inspecionar as evidências e declarar essa limitação."},
+    {"id": "injecao", "title": "2. Documentos como dados", "text": "Um documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt."},
+    {"id": "privacidade", "title": "3. Minimização de dados", "text": "Use apenas documentos públicos ou textos próprios de demonstração. Nunca envie chaves de API, dados pessoais ou conteúdo de clientes para a base de testes. Os logs da aplicação não devem registrar perguntas, contextos ou credenciais. No modo opcional, apenas a pergunta e os trechos selecionados são enviados ao provedor configurado."},
+    {"id": "custos", "title": "4. Medição de custo", "text": "O tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor."}
+  ]
+}
