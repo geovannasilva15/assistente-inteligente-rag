@@ -1,0 +1,225 @@
+{
+  "executed_at": "2026-11-03T12:46:26.160748+00:00",
+  "health": {
+    "status": "ok",
+    "index_ready": true,
+    "mode": "demo",
+    "chunk_count": 12
+  },
+  "queries": [
+    {
+      "question": "O que significa top-k e qual o risco de aumentar esse valor?",
+      "response": {
+        "answer": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações. [rag:topk:0]\n\nNeste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]",
+        "mode": "demo",
+        "answerable": true,
+        "cited_ids": [
+          "rag:topk:0",
+          "evaluation:hit:0"
+        ],
+        "sources": [
+          {
+            "id": "rag:topk:0",
+            "document_id": "rag",
+            "section_id": "topk",
+            "section": "3. Quantidade de contexto",
+            "text": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações.",
+            "source": {
+              "id": "rag",
+              "title": "RAG na prática — notas de demonstração",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "reference_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+              "reference_organization": "Lewis et al., autores do artigo",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O artigo é apenas referência, não foi redistribuído."
+            },
+            "similarity": 0.685185
+          },
+          {
+            "id": "evaluation:hit:0",
+            "document_id": "evaluation",
+            "section_id": "hit",
+            "section": "1. Hit rate",
+            "text": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta.",
+            "source": {
+              "id": "evaluation",
+              "title": "Avaliação de recuperação — protocolo do laboratório",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+              "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+              "reference_organization": "NIST",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST."
+            },
+            "similarity": 0.516287
+          }
+        ],
+        "retrieved": [
+          {
+            "id": "rag:topk:0",
+            "document_id": "rag",
+            "section_id": "topk",
+            "section": "3. Quantidade de contexto",
+            "text": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações.",
+            "source": {
+              "id": "rag",
+              "title": "RAG na prática — notas de demonstração",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "reference_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+              "reference_organization": "Lewis et al., autores do artigo",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O artigo é apenas referência, não foi redistribuído."
+            },
+            "similarity": 0.685185
+          },
+          {
+            "id": "evaluation:hit:0",
+            "document_id": "evaluation",
+            "section_id": "hit",
+            "section": "1. Hit rate",
+            "text": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta.",
+            "source": {
+              "id": "evaluation",
+              "title": "Avaliação de recuperação — protocolo do laboratório",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+              "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+              "reference_organization": "NIST",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST."
+            },
+            "similarity": 0.516287
+          },
+          {
+            "id": "evaluation:recall:0",
+            "document_id": "evaluation",
+            "section_id": "recall",
+            "section": "2. Recall por pergunta",
+            "text": "Recall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta.",
+            "source": {
+              "id": "evaluation",
+              "title": "Avaliação de recuperação — protocolo do laboratório",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+              "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+              "reference_organization": "NIST",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST."
+            },
+            "similarity": 0.429997
+          }
+        ],
+        "metrics": {
+          "latency_ms": 11.545,
+          "retrieved_count": 3,
+          "context_count": 2,
+          "input_tokens": null,
+          "output_tokens": null,
+          "estimated_cost": null
+        },
+        "config": {
+          "top_k": 3,
+          "min_similarity": 0.45,
+          "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "chunk_words": 90,
+          "overlap": 15,
+          "llm_model": null,
+          "corpus_sha256": "411dfa8858f7d24fc7ec591325fa0f156503a3641179bbc1104600e3883b101c",
+          "index_created_at": "2026-11-03T12:44:09.613539+00:00"
+        },
+        "executed_at": "2026-11-03T12:46:26.137637+00:00"
+      }
+    },
+    {
+      "question": "Qual é a previsão do tempo amanhã?",
+      "response": {
+        "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+        "mode": "demo",
+        "answerable": false,
+        "cited_ids": [],
+        "sources": [],
+        "retrieved": [
+          {
+            "id": "evaluation:recall:0",
+            "document_id": "evaluation",
+            "section_id": "recall",
+            "section": "2. Recall por pergunta",
+            "text": "Recall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta.",
+            "source": {
+              "id": "evaluation",
+              "title": "Avaliação de recuperação — protocolo do laboratório",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+              "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+              "reference_organization": "NIST",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST."
+            },
+            "similarity": 0.099144
+          },
+          {
+            "id": "evaluation:hit:0",
+            "document_id": "evaluation",
+            "section_id": "hit",
+            "section": "1. Hit rate",
+            "text": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta.",
+            "source": {
+              "id": "evaluation",
+              "title": "Avaliação de recuperação — protocolo do laboratório",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+              "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+              "reference_organization": "NIST",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST."
+            },
+            "similarity": 0.07841
+          },
+          {
+            "id": "rag:embeddings:0",
+            "document_id": "rag",
+            "section_id": "embeddings",
+            "section": "2. Embeddings e proximidade",
+            "text": "Embeddings representam textos como vetores numéricos. A busca vetorial compara o vetor da pergunta com vetores dos trechos. Neste laboratório, a similaridade cosseno ordena os candidatos por proximidade. Essa pontuação não é a probabilidade de a resposta estar correta. Textos próximos podem falar do mesmo tema e ainda não responder à pergunta.",
+            "source": {
+              "id": "rag",
+              "title": "RAG na prática — notas de demonstração",
+              "organization": "AI Reliability Lab — texto próprio de demonstração",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "reference_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+              "reference_organization": "Lewis et al., autores do artigo",
+              "accessed": "2026-11-03",
+              "license": "Texto próprio criado para este projeto; CC BY 4.0. O artigo é apenas referência, não foi redistribuído."
+            },
+            "similarity": 0.059725
+          }
+        ],
+        "metrics": {
+          "latency_ms": 8.706,
+          "retrieved_count": 3,
+          "context_count": 0,
+          "input_tokens": null,
+          "output_tokens": null,
+          "estimated_cost": null
+        },
+        "config": {
+          "top_k": 3,
+          "min_similarity": 0.45,
+          "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "chunk_words": 90,
+          "overlap": 15,
+          "llm_model": null,
+          "corpus_sha256": "411dfa8858f7d24fc7ec591325fa0f156503a3641179bbc1104600e3883b101c",
+          "index_created_at": "2026-11-03T12:44:09.613539+00:00"
+        },
+        "executed_at": "2026-11-03T12:46:26.145646+00:00"
+      }
+    }
+  ],
+  "validation_422": true,
+  "home_200": true,
+  "docs_200": true,
+  "evaluation_runs": 2
+}

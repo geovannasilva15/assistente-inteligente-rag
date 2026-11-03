@@ -1,0 +1,851 @@
+{
+  "executed_at": "2026-11-03T12:35:44.182545+00:00",
+  "mode": "demo",
+  "warmup_ms": 4166.8656000401825,
+  "config": {
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "min_similarity": 0.45,
+    "chunk_words": 90,
+    "overlap": 15,
+    "corpus_sha256": "411dfa8858f7d24fc7ec591325fa0f156503a3641179bbc1104600e3883b101c",
+    "index_created_at": "2026-11-03T12:32:26.174574+00:00",
+    "evaluation_sha256": "728782332aa0a48ff9f1ba231533f6e1640c076f49c88b1c2df229559d6e7f41"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows",
+    "fastembed": "0.9.1",
+    "numpy": "2.5.4"
+  },
+  "runs": [
+    {
+      "top_k": 3,
+      "case_count": 16,
+      "answerable_count": 11,
+      "unanswerable_count": 5,
+      "hit_rate_at_k": 1.0,
+      "mean_recall_at_k": 0.9545454545454546,
+      "unanswerable_abstention_rate": 0.8,
+      "answerable_response_rate": 0.8181818181818182,
+      "citation_validity_rate": 1.0,
+      "mean_latency_ms": 13.90975,
+      "elapsed_ms": 224.057,
+      "cases": [
+        {
+          "id": "q01",
+          "question": "O que embeddings representam?",
+          "expected_answerable": true,
+          "actual_answerable": false,
+          "expected_sources": [
+            "rag:embeddings"
+          ],
+          "retrieved_sources": [
+            "rag:embeddings",
+            "rag:fluxo",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 12.923,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q02",
+          "question": "O que significa top-k e qual o risco de aumentar esse valor?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:topk"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:topk"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "quantidade máxima de trechos",
+            "conteúdo irrelevante"
+          ],
+          "latency_ms": 15.887,
+          "answer": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações. [rag:topk:0]\n\nNeste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]",
+          "cited_ids": [
+            "rag:topk:0",
+            "evaluation:hit:0"
+          ]
+        },
+        {
+          "id": "q03",
+          "question": "Como calcular hit rate@k?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:hit"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "pelo menos uma",
+            "perguntas respondíveis"
+          ],
+          "latency_ms": 10.257,
+          "answer": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]",
+          "cited_ids": [
+            "evaluation:hit:0"
+          ]
+        },
+        {
+          "id": "q04",
+          "question": "Como calcular recall@k de uma pergunta?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:recall"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:topk"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "fontes esperadas distintas",
+            "total de fontes esperadas"
+          ],
+          "latency_ms": 12.216,
+          "answer": "Recall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta. [evaluation:recall:0]\n\nNeste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]\n\nTop-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações. [rag:topk:0]",
+          "cited_ids": [
+            "evaluation:recall:0",
+            "evaluation:hit:0",
+            "rag:topk:0"
+          ]
+        },
+        {
+          "id": "q05",
+          "question": "O que a similaridade cosseno significa? Ela é probabilidade de acerto?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:embeddings"
+          ],
+          "retrieved_sources": [
+            "evaluation:limites",
+            "evaluation:recall",
+            "rag:embeddings"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "proximidade",
+            "não é a probabilidade"
+          ],
+          "latency_ms": 17.211,
+          "answer": "Embeddings representam textos como vetores numéricos. A busca vetorial compara o vetor da pergunta com vetores dos trechos. Neste laboratório, a similaridade cosseno ordena os candidatos por proximidade. Essa pontuação não é a probabilidade de a resposta estar correta. Textos próximos podem falar do mesmo tema e ainda não responder à pergunta. [rag:embeddings:0]",
+          "cited_ids": [
+            "rag:embeddings:0"
+          ]
+        },
+        {
+          "id": "q06",
+          "question": "Como tratar instruções maliciosas nos documentos?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "responsible:injecao"
+          ],
+          "retrieved_sources": [
+            "evaluation:limites",
+            "responsible:injecao",
+            "responsible:privacidade"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "dados não confiáveis",
+            "não garante proteção completa"
+          ],
+          "latency_ms": 12.16,
+          "answer": "Um documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]",
+          "cited_ids": [
+            "responsible:injecao:0"
+          ]
+        },
+        {
+          "id": "q07",
+          "question": "Quando o custo estimado fica indisponível?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "responsible:custos"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:recall",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "Sem contagens ou preços"
+          ],
+          "latency_ms": 13.028,
+          "answer": "O tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q08",
+          "question": "Quais dados não devem aparecer nos logs?",
+          "expected_answerable": true,
+          "actual_answerable": false,
+          "expected_sources": [
+            "responsible:privacidade"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:limites",
+            "responsible:privacidade"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 12.368,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q09",
+          "question": "Qual a diferença entre hit rate e recall no protocolo?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:hit",
+            "evaluation:recall"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 0.5,
+          "citations_valid": true,
+          "expected_points_present": [
+            "pelo menos uma"
+          ],
+          "latency_ms": 11.832,
+          "answer": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]\n\nO tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "evaluation:hit:0",
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q10",
+          "question": "Como são apresentadas as fontes e o que a verificação de citações não garante?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:fontes",
+            "evaluation:limites"
+          ],
+          "retrieved_sources": [
+            "evaluation:limites",
+            "rag:fontes",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "identificador",
+            "qualidade semântica"
+          ],
+          "latency_ms": 18.015,
+          "answer": "Cada trecho precisa preservar um identificador, o título do documento e a seção de origem. Uma citação permite localizar a evidência apresentada. Mesmo quando a fonte existe, é necessário verificar se o trecho sustenta a afirmação. Ter uma referência válida não comprova que a resposta foi interpretada corretamente. [rag:fontes:0]\n\nA verificação automática de citações confirma se os identificadores citados pertencem ao contexto recuperado. Ela não avalia toda a qualidade semântica da resposta. Poucas perguntas elaboradas para uma base pequena não representam o uso real. Os resultados precisam registrar data, configuração e falhas por caso; revisão humana continua necessária. [evaluation:limites:0]\n\nUm documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]",
+          "cited_ids": [
+            "rag:fontes:0",
+            "evaluation:limites:0",
+            "responsible:injecao:0"
+          ]
+        },
+        {
+          "id": "q11",
+          "question": "Como avaliar casos sem resposta e por que sempre se abster não é útil?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:abstencao"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:limites",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "taxa de abstenção correta",
+            "taxa de resposta"
+          ],
+          "latency_ms": 14.904,
+          "answer": "O conjunto de avaliação deve incluir perguntas sem resposta nos documentos. A taxa de abstenção correta nesses casos mede quantas receberam uma mensagem de evidência insuficiente. Também é necessário observar a taxa de resposta nos casos respondíveis, pois um sistema que sempre se abstém não é útil. Os dois grupos precisam ser analisados separadamente. [evaluation:abstencao:0]\n\nA verificação automática de citações confirma se os identificadores citados pertencem ao contexto recuperado. Ela não avalia toda a qualidade semântica da resposta. Poucas perguntas elaboradas para uma base pequena não representam o uso real. Os resultados precisam registrar data, configuração e falhas por caso; revisão humana continua necessária. [evaluation:limites:0]\n\nUm documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]",
+          "cited_ids": [
+            "evaluation:abstencao:0",
+            "evaluation:limites:0",
+            "responsible:injecao:0"
+          ]
+        },
+        {
+          "id": "q12",
+          "question": "Qual é a previsão do tempo amanhã?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:embeddings"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 13.117,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q13",
+          "question": "Qual é a receita de bolo de cenoura?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "responsible:custos",
+            "responsible:injecao"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 12.196,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q14",
+          "question": "Qual o preço atual por milhão de tokens do modelo do provedor?",
+          "expected_answerable": false,
+          "actual_answerable": true,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": true,
+          "expected_points_present": [],
+          "latency_ms": 14.166,
+          "answer": "O tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q15",
+          "question": "Qual é o valor numérico do limiar de similaridade recomendado pelo NIST para produção?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "responsible:incerteza"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 17.589,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q16",
+          "question": "Qual modelo teve o melhor recall no benchmark MTEB de 2026?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:limites",
+            "evaluation:recall"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 14.687,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        }
+      ]
+    },
+    {
+      "top_k": 5,
+      "case_count": 16,
+      "answerable_count": 11,
+      "unanswerable_count": 5,
+      "hit_rate_at_k": 1.0,
+      "mean_recall_at_k": 1.0,
+      "unanswerable_abstention_rate": 0.8,
+      "answerable_response_rate": 0.8181818181818182,
+      "citation_validity_rate": 1.0,
+      "mean_latency_ms": 13.9560625,
+      "elapsed_ms": 224.444,
+      "cases": [
+        {
+          "id": "q01",
+          "question": "O que embeddings representam?",
+          "expected_answerable": true,
+          "actual_answerable": false,
+          "expected_sources": [
+            "rag:embeddings"
+          ],
+          "retrieved_sources": [
+            "evaluation:limites",
+            "rag:embeddings",
+            "rag:fluxo",
+            "rag:fontes",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 9.938,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q02",
+          "question": "O que significa top-k e qual o risco de aumentar esse valor?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:topk"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:topk",
+            "responsible:custos",
+            "responsible:incerteza"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "quantidade máxima de trechos",
+            "conteúdo irrelevante"
+          ],
+          "latency_ms": 13.942,
+          "answer": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações. [rag:topk:0]\n\nNeste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]",
+          "cited_ids": [
+            "rag:topk:0",
+            "evaluation:hit:0"
+          ]
+        },
+        {
+          "id": "q03",
+          "question": "Como calcular hit rate@k?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:hit"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:fluxo",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "pelo menos uma",
+            "perguntas respondíveis"
+          ],
+          "latency_ms": 14.551,
+          "answer": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]",
+          "cited_ids": [
+            "evaluation:hit:0"
+          ]
+        },
+        {
+          "id": "q04",
+          "question": "Como calcular recall@k de uma pergunta?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:recall"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:limites",
+            "evaluation:recall",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "fontes esperadas distintas",
+            "total de fontes esperadas"
+          ],
+          "latency_ms": 11.313,
+          "answer": "Recall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta. [evaluation:recall:0]\n\nNeste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]\n\nTop-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações. [rag:topk:0]",
+          "cited_ids": [
+            "evaluation:recall:0",
+            "evaluation:hit:0",
+            "rag:topk:0"
+          ]
+        },
+        {
+          "id": "q05",
+          "question": "O que a similaridade cosseno significa? Ela é probabilidade de acerto?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:embeddings"
+          ],
+          "retrieved_sources": [
+            "evaluation:limites",
+            "evaluation:recall",
+            "rag:embeddings",
+            "rag:fluxo",
+            "responsible:incerteza"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "proximidade",
+            "não é a probabilidade"
+          ],
+          "latency_ms": 16.487,
+          "answer": "Embeddings representam textos como vetores numéricos. A busca vetorial compara o vetor da pergunta com vetores dos trechos. Neste laboratório, a similaridade cosseno ordena os candidatos por proximidade. Essa pontuação não é a probabilidade de a resposta estar correta. Textos próximos podem falar do mesmo tema e ainda não responder à pergunta. [rag:embeddings:0]",
+          "cited_ids": [
+            "rag:embeddings:0"
+          ]
+        },
+        {
+          "id": "q06",
+          "question": "Como tratar instruções maliciosas nos documentos?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "responsible:injecao"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:limites",
+            "rag:fontes",
+            "responsible:injecao",
+            "responsible:privacidade"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "dados não confiáveis",
+            "não garante proteção completa"
+          ],
+          "latency_ms": 10.849,
+          "answer": "Um documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]",
+          "cited_ids": [
+            "responsible:injecao:0"
+          ]
+        },
+        {
+          "id": "q07",
+          "question": "Quando o custo estimado fica indisponível?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "responsible:custos"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "Sem contagens ou preços"
+          ],
+          "latency_ms": 12.195,
+          "answer": "O tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q08",
+          "question": "Quais dados não devem aparecer nos logs?",
+          "expected_answerable": true,
+          "actual_answerable": false,
+          "expected_sources": [
+            "responsible:privacidade"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:hit",
+            "evaluation:limites",
+            "evaluation:recall",
+            "responsible:privacidade"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 11.697,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q09",
+          "question": "Qual a diferença entre hit rate e recall no protocolo?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:hit",
+            "evaluation:recall"
+          ],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:limites",
+            "evaluation:recall",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "pelo menos uma"
+          ],
+          "latency_ms": 11.218,
+          "answer": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta. [evaluation:hit:0]\n\nO tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "evaluation:hit:0",
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q10",
+          "question": "Como são apresentadas as fontes e o que a verificação de citações não garante?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "rag:fontes",
+            "evaluation:limites"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:limites",
+            "evaluation:recall",
+            "rag:fontes",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "identificador",
+            "qualidade semântica"
+          ],
+          "latency_ms": 16.258,
+          "answer": "Cada trecho precisa preservar um identificador, o título do documento e a seção de origem. Uma citação permite localizar a evidência apresentada. Mesmo quando a fonte existe, é necessário verificar se o trecho sustenta a afirmação. Ter uma referência válida não comprova que a resposta foi interpretada corretamente. [rag:fontes:0]\n\nA verificação automática de citações confirma se os identificadores citados pertencem ao contexto recuperado. Ela não avalia toda a qualidade semântica da resposta. Poucas perguntas elaboradas para uma base pequena não representam o uso real. Os resultados precisam registrar data, configuração e falhas por caso; revisão humana continua necessária. [evaluation:limites:0]\n\nUm documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]\n\nO conjunto de avaliação deve incluir perguntas sem resposta nos documentos. A taxa de abstenção correta nesses casos mede quantas receberam uma mensagem de evidência insuficiente. Também é necessário observar a taxa de resposta nos casos respondíveis, pois um sistema que sempre se abstém não é útil. Os dois grupos precisam ser analisados separadamente. [evaluation:abstencao:0]\n\nRecall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta. [evaluation:recall:0]",
+          "cited_ids": [
+            "rag:fontes:0",
+            "evaluation:limites:0",
+            "responsible:injecao:0",
+            "evaluation:abstencao:0",
+            "evaluation:recall:0"
+          ]
+        },
+        {
+          "id": "q11",
+          "question": "Como avaliar casos sem resposta e por que sempre se abster não é útil?",
+          "expected_answerable": true,
+          "actual_answerable": true,
+          "expected_sources": [
+            "evaluation:abstencao"
+          ],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:limites",
+            "evaluation:recall",
+            "responsible:incerteza",
+            "responsible:injecao"
+          ],
+          "hit_at_k": 1,
+          "recall_at_k": 1.0,
+          "citations_valid": true,
+          "expected_points_present": [
+            "taxa de abstenção correta",
+            "taxa de resposta"
+          ],
+          "latency_ms": 15.464,
+          "answer": "O conjunto de avaliação deve incluir perguntas sem resposta nos documentos. A taxa de abstenção correta nesses casos mede quantas receberam uma mensagem de evidência insuficiente. Também é necessário observar a taxa de resposta nos casos respondíveis, pois um sistema que sempre se abstém não é útil. Os dois grupos precisam ser analisados separadamente. [evaluation:abstencao:0]\n\nA verificação automática de citações confirma se os identificadores citados pertencem ao contexto recuperado. Ela não avalia toda a qualidade semântica da resposta. Poucas perguntas elaboradas para uma base pequena não representam o uso real. Os resultados precisam registrar data, configuração e falhas por caso; revisão humana continua necessária. [evaluation:limites:0]\n\nUm documento pode conter frases que tentam ordenar ao assistente que ignore regras ou revele segredos. Essas frases devem ser tratadas como dados não confiáveis. No modo com modelo, as instruções do sistema delimitam o contexto e exigem citações válidas. Essa defesa reduz riscos, mas não garante proteção completa contra injeção de prompt. [responsible:injecao:0]\n\nNeste laboratório, o sistema se abstém quando nenhum trecho recuperado alcança o limiar de similaridade configurado. Esse limiar é uma heurística de engenharia, não um detector de verdade. Uma pergunta fora do escopo pode ser parecida com um trecho e ultrapassar o limiar. A interface deve permitir inspecionar as evidências e declarar essa limitação. [responsible:incerteza:0]\n\nRecall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta. [evaluation:recall:0]",
+          "cited_ids": [
+            "evaluation:abstencao:0",
+            "evaluation:limites:0",
+            "responsible:injecao:0",
+            "responsible:incerteza:0",
+            "evaluation:recall:0"
+          ]
+        },
+        {
+          "id": "q12",
+          "question": "Qual é a previsão do tempo amanhã?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:embeddings",
+            "responsible:custos"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 14.857,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q13",
+          "question": "Qual é a receita de bolo de cenoura?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "rag:topk",
+            "responsible:custos",
+            "responsible:incerteza",
+            "responsible:injecao"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 14.66,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q14",
+          "question": "Qual o preço atual por milhão de tokens do modelo do provedor?",
+          "expected_answerable": false,
+          "actual_answerable": true,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:fluxo",
+            "rag:topk",
+            "responsible:custos"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": true,
+          "expected_points_present": [],
+          "latency_ms": 16.785,
+          "answer": "O tempo de resposta é medido por um relógio monotônico. Tokens de entrada e saída só são apresentados quando informados pelo provedor. O custo estimado usa essas contagens e os preços configurados por milhão de tokens, com moeda explícita. Sem contagens ou preços suficientes, o custo fica indisponível. A estimativa não substitui a fatura do provedor. [responsible:custos:0]",
+          "cited_ids": [
+            "responsible:custos:0"
+          ]
+        },
+        {
+          "id": "q15",
+          "question": "Qual é o valor numérico do limiar de similaridade recomendado pelo NIST para produção?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:hit",
+            "evaluation:recall",
+            "rag:embeddings",
+            "responsible:incerteza"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 19.309,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        },
+        {
+          "id": "q16",
+          "question": "Qual modelo teve o melhor recall no benchmark MTEB de 2026?",
+          "expected_answerable": false,
+          "actual_answerable": false,
+          "expected_sources": [],
+          "retrieved_sources": [
+            "evaluation:abstencao",
+            "evaluation:hit",
+            "evaluation:limites",
+            "evaluation:recall",
+            "responsible:custos"
+          ],
+          "hit_at_k": null,
+          "recall_at_k": null,
+          "citations_valid": null,
+          "expected_points_present": [],
+          "latency_ms": 13.774,
+          "answer": "Não encontrei evidência suficiente nos documentos disponíveis para responder a esta pergunta.",
+          "cited_ids": []
+        }
+      ]
+    }
+  ],
+  "limitations": "16 casos didáticos, uma execução por configuração, ordem fixa 3 depois 5, modelo aquecido. Sem avaliação de correção semântica por juiz LLM. Citações válidas e recuperação não provam veracidade. Pontos esperados são apenas busca literal diagnóstica. Tempos variam por máquina."
+}

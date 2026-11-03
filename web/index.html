@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Reliability Lab</title>
+<link rel="stylesheet" href="/static/style.css">
+<script defer src="/static/app.js">
+</script>
+</head>
+<body>
+<header>
+<a class="brand" href="/">◈ <span>AI Reliability Lab</span>
+</a>
+<nav>
+<a href="#laboratorio">Laboratório</a>
+<a href="#avaliacao">Avaliação</a>
+<a href="/docs">API ↗</a>
+</nav>
+</header>
+<main>
+<section class="intro">
+<p class="eyebrow">ENGENHARIA DE IA · EVIDÊNCIAS PRIMEIRO</p>
+<h1>Uma resposta é só<br>o começo da investigação.</h1>
+<p class="lead">Explore uma pequena base sobre RAG, avaliação e desenvolvimento responsável. Veja o que foi recuperado, de onde veio e quais limites permanecem.</p>
+<div class="tags">
+<span>Busca semântica local</span>
+<span>Fontes rastreáveis</span>
+<span>Avaliação reproduzível</span>
+</div>
+</section>
+<section id="laboratorio" class="workspace">
+<div class="panel query">
+<p class="eyebrow">01 / PERGUNTE AOS DOCUMENTOS</p>
+<h2>Explore as evidências</h2>
+<form id="form">
+<label for="question">Sua pergunta</label>
+<textarea id="question" required maxlength="1000" rows="4" placeholder="O que significa top-k e por que mais contexto nem sempre ajuda?">
+</textarea>
+<div class="controls">
+<div>
+<label for="mode">Modo de resposta</label>
+<select id="mode">
+<option value="demo">Demonstração extrativa</option>
+<option value="llm">LLM opcional</option>
+</select>
+</div>
+<div>
+<label for="topk">Top-k</label>
+<select id="topk">
+<option>3</option>
+<option>5</option>
+</select>
+</div>
+</div>
+<p id="mode-note" class="muted">Sem chave paga. Copia trechos reais da base; não gera uma síntese por modelo de linguagem.</p>
+<button id="submit" type="submit">Consultar documentos <span>→</span>
+</button>
+</form>
+<p class="muted">Experimente uma pergunta</p>
+<div class="examples">
+<button type="button">O que é recall@k?</button>
+<button type="button">Como tratar instruções maliciosas nos documentos?</button>
+<button type="button">Qual é a previsão do tempo amanhã?</button>
+</div>
+</div>
+<div class="panel result">
+<p class="eyebrow">02 / RESPOSTA E RASTREABILIDADE</p>
+<div id="status" role="status" aria-live="polite">Pronto para consultar</div>
+<p id="empty" class="muted">As respostas, as fontes e os tempos aparecerão aqui após uma consulta real.</p>
+<div id="output" hidden>
+<h2 id="answer-title">Evidências encontradas</h2>
+<p id="answer">
+</p>
+<div id="metrics" class="metrics">
+</div>
+<h3>Fontes citadas</h3>
+<div id="sources">
+</div>
+<details>
+<summary>Todos os trechos recuperados</summary>
+<div id="retrieved">
+</div>
+</details>
+<p class="muted">Similaridade mede proximidade entre vetores. Não é uma probabilidade de acerto. Uma citação válida não garante que a resposta esteja correta.</p>
+</div>
+</div>
+</section>
+<section id="avaliacao" class="panel evaluation">
+<p class="eyebrow">03 / MEDIR PARA ENTENDER</p>
+<h2>O que a avaliação revela?</h2>
+<p class="muted">Mesmas perguntas, top-k 3 e 5. Métricas de recuperação e abstenção são verificações limitadas, não um certificado de confiabilidade.</p>
+<button id="load-report" type="button" class="secondary">Consultar última execução</button>
+<div id="report" role="status" aria-live="polite">Nenhum resultado carregado.</div>
+</section>
+<footer>Geovanna Eduarda da Silva · AI Reliability Lab <span>Base didática própria · Sem garantia de completude</span>
+</footer>
+</main>
+</body>
+</html>

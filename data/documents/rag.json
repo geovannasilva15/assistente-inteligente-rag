@@ -1,0 +1,16 @@
+{
+  "id": "rag",
+  "title": "RAG na prática — notas de demonstração",
+  "organization": "AI Reliability Lab — texto próprio de demonstração",
+  "url": "https://arxiv.org/abs/2005.11401",
+  "reference_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "reference_organization": "Lewis et al., autores do artigo",
+  "accessed": "2026-11-03",
+  "license": "Texto próprio criado para este projeto; CC BY 4.0. O artigo é apenas referência, não foi redistribuído.",
+  "sections": [
+    {"id": "fluxo", "title": "1. Recuperar antes de responder", "text": "Em uma aplicação RAG, a pergunta é usada para recuperar conteúdo de uma base documental. Os trechos encontrados são apresentados ao gerador como contexto. Esse desenho permite consultar uma base externa ao modelo. No AI Reliability Lab, o modo de demonstração copia trechos literalmente, enquanto o modo opcional usa um modelo de linguagem para formular a resposta."},
+    {"id": "embeddings", "title": "2. Embeddings e proximidade", "text": "Embeddings representam textos como vetores numéricos. A busca vetorial compara o vetor da pergunta com vetores dos trechos. Neste laboratório, a similaridade cosseno ordena os candidatos por proximidade. Essa pontuação não é a probabilidade de a resposta estar correta. Textos próximos podem falar do mesmo tema e ainda não responder à pergunta."},
+    {"id": "topk", "title": "3. Quantidade de contexto", "text": "Top-k é a quantidade máxima de trechos retornados pela busca. Aumentar top-k pode recuperar uma fonte que ficou fora das primeiras posições, mas também pode trazer conteúdo irrelevante. Em um gerador pago, contexto maior pode aumentar tokens de entrada e custo. A comparação deve usar as mesmas perguntas e registrar as configurações."},
+    {"id": "fontes", "title": "4. Rastreabilidade", "text": "Cada trecho precisa preservar um identificador, o título do documento e a seção de origem. Uma citação permite localizar a evidência apresentada. Mesmo quando a fonte existe, é necessário verificar se o trecho sustenta a afirmação. Ter uma referência válida não comprova que a resposta foi interpretada corretamente."}
+  ]
+}

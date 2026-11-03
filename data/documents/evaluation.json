@@ -1,0 +1,16 @@
+{
+  "id": "evaluation",
+  "title": "Avaliação de recuperação — protocolo do laboratório",
+  "organization": "AI Reliability Lab — texto próprio de demonstração",
+  "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+  "reference_title": "AI RMF 1.0 — seção 5.3 Measure",
+  "reference_organization": "NIST",
+  "accessed": "2026-11-03",
+  "license": "Texto próprio criado para este projeto; CC BY 4.0. O NIST é referência conceitual; este protocolo não é uma norma NIST.",
+  "sections": [
+    {"id": "hit", "title": "1. Hit rate", "text": "Neste protocolo, hit rate@k é a proporção de perguntas respondíveis em que pelo menos uma das fontes esperadas aparece nos primeiros k trechos recuperados. As fontes esperadas são identificadas pelo documento e pela seção. Perguntas sem resposta na base ficam fora desse denominador. Um acerto de recuperação não significa que a resposta esteja correta."},
+    {"id": "recall", "title": "2. Recall por pergunta", "text": "Recall@k de uma pergunta é o número de fontes esperadas distintas recuperadas dividido pelo total de fontes esperadas dessa pergunta. O relatório apresenta a média desses valores para perguntas respondíveis. Repetir trechos da mesma seção não aumenta o recall. Perguntas que exigem duas seções ajudam a detectar recuperação incompleta."},
+    {"id": "abstencao", "title": "3. Abstenção", "text": "O conjunto de avaliação deve incluir perguntas sem resposta nos documentos. A taxa de abstenção correta nesses casos mede quantas receberam uma mensagem de evidência insuficiente. Também é necessário observar a taxa de resposta nos casos respondíveis, pois um sistema que sempre se abstém não é útil. Os dois grupos precisam ser analisados separadamente."},
+    {"id": "limites", "title": "4. Limites das verificações", "text": "A verificação automática de citações confirma se os identificadores citados pertencem ao contexto recuperado. Ela não avalia toda a qualidade semântica da resposta. Poucas perguntas elaboradas para uma base pequena não representam o uso real. Os resultados precisam registrar data, configuração e falhas por caso; revisão humana continua necessária."}
+  ]
+}
